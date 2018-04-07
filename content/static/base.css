@@ -1,0 +1,33 @@
+body {
+    margin: 48px auto;
+    max-width:650px;
+    line-height: 1.6;
+    font-size: 16px;
+    color: #444;
+    padding:0 10px;
+}
+h1, h2, h3 {
+    line-height: 1.2;
+}
+table {
+    margin: auto;
+}
+thead {
+    background-color: #ffcc99;
+    border-collapse: collapse;
+}
+td, th {
+    border: 1px solid #999;
+    padding: 0.4rem;
+    text-align: left;
+}
+tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+dt {
+	font-weight: bold;
+}
+dd {
+	background:none no-repeat left top;
+	padding-left: 50px;
+}
