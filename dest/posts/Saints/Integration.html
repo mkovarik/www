@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"> 
+        <link rel="stylesheet" href="../../static/base.css" type="text/css">
+        <link rel="stylesheet" href="../../static/emacs.css" type="text/css">
+        <link rel="stylesheet" href="../../static/katex.css" type="text/css">
+    </head>
+    <body>
+<h1 id="integration">Integration</h1>
+
+<h2 id="section">2009-10-12</h2>
+
+<h3 id="administrata">Administrata</h3>
+
+<dl>
+  <dt>Calculators.</dt>
+  <dd>You are expected to supply your own. Graphing calculators are not permissible.
+(Nor are any calculators capable of loading custom software)</dd>
+  <dt>Bathroom Breaks.</dt>
+  <dd>Always permissible <strong>except</strong> for tests / quizzes. If there is a potential
+medical issue, please seek disability accomodations.</dd>
+  <dt>Disability Accomodations.</dt>
+  <dd>See syllabus. Not all disabilities can be accomodated for. I’ll do my best.</dd>
+  <dt>Attendance.</dt>
+  <dd>Attend every lecture. Tests will have a “make up” for no shows. Missing a test
+and its make</dd>
+  <dt>Important Dates</dt>
+  <dd>Some important dates include
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Event</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2017-09-12</td>
+          <td>First Day of Class</td>
+        </tr>
+        <tr>
+          <td>2017-10-18</td>
+          <td>Midterm I</td>
+        </tr>
+        <tr>
+          <td>2017-11-14</td>
+          <td>Last Day to Withdrawal (with a ‘W’ grade)</td>
+        </tr>
+        <tr>
+          <td>2017-11-22</td>
+          <td>Midterm II</td>
+        </tr>
+        <tr>
+          <td>2017-12-04</td>
+          <td>Midterm I Make Up</td>
+        </tr>
+        <tr>
+          <td>2017-12-06</td>
+          <td>Midterm II Make Up</td>
+        </tr>
+        <tr>
+          <td>2017-12-14</td>
+          <td>Final Exam</td>
+        </tr>
+        <tr>
+          <td>2017-12-17</td>
+          <td>Final Grades Released</td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+</dl>
+
+<h3 id="lecture-notes">Lecture Notes</h3>
+
+<dl>
+  <dt>Statistics.</dt>
+  <dd>The art of making sense of data. Two main disciplines include <strong>descriptive
+statistics</strong> (summarizing and communicating data) and <strong>inferential 
+statistics</strong> (drawing conclusions from data).</dd>
+  <dt>Jobs.</dt>
+  <dd>Researchers. Analysts. Actuaries. ‘Data Scientists’. High salaries. $$$.</dd>
+  <dt>Software.</dt>
+  <dd>Spreadsheet applications (LO Calc, MS Excel, etc.). Programming languages
+(R, Python). Visualization tools.</dd>
+  <dt>Sumation Notation.</dt>
+  <dd><script type="math/tex">\Sigma</script> (greek: capital”sigma”) is used to denote sums. Useful notation 
+when sums have an unspecified number of terms.</dd>
+  <dt>Sample / Data Set.</dt>
+  <dd>Basically some collection of data that we have access to.</dd>
+  <dt>(Sample) Standard Deviation.</dt>
+  <dd>Measure of dispersion. Shares the same unit (if any) of the underlying sample.
+Not robust. Denoted by <script type="math/tex">\sigma</script> (lowercase “sigma”). Defined by
+
+    <script type="math/tex; mode=display">\sigma = \sqrt{\frac{1}{N-1} \sum (x-\bar{x})^2}.</script>
+
+    <p>The summation is over every value <script type="math/tex">x</script> in the sample (mean = <script type="math/tex">\bar x</script>).
+<script type="math/tex">N</script> is the sample size.</p>
+
+    <p><strong>NOTE:</strong> Some statisticians choose to use <script type="math/tex">N</script> in the denominator instead of
+<script type="math/tex">N-1</script>. Search ‘bias-variance tradeoff’ for the pros/cons.</p>
+  </dd>
+  <dt>(Sample) Variance.</dt>
+  <dd>A measure of dispersion. The square of the sample variance. Measured in the
+square of the unit (if any) of the underlying sample data. Denoted by
+<script type="math/tex">\sigma^2</script>:
+
+    <script type="math/tex; mode=display">\sigma^2 = \frac{1}{N-1} \sum (x - \bar x)^2.</script>
+  </dd>
+</dl>
+
+<h3 id="code">Code</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">comp1</span><span class="p">,</span> <span class="n">comp2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">comp1</span> <span class="o">*</span> <span class="n">comp2</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<p>Here, the vector <code class="highlighter-rouge">vec1</code> must contain numerical instances.</p>
+
+    <script src="../../static/katex.js"></script>
+    <script src="../../static/jquery.js"></script>
+    <script src="../../static/render_math.js"></script>
+    </body>
+</html>

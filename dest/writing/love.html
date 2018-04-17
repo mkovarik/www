@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../static/base.css" type="text/css">
+        <link rel="stylesheet" href="../static/emacs.css" type="text/css">
+        <link rel="stylesheet" href="../static/katex.css" type="text/css">
+    </head>
+    <body>
+<h1 id="python-best-practices">Python Best Practices</h1>
+
+<p>This style guide is riddled with opnions.</p>
+
+<h2 id="style">Style</h2>
+
+<h3 id="whitespace">Whitespace</h3>
+
+<p>Indentation is always with four spaces. No tab characters. No trailing
+whitespace. Operators should be padded with a space (<code class="highlighter-rouge">2 + 2</code> instead of <code class="highlighter-rouge">2+2</code>).</p>
+
+<p>On Emacs, the latter two can be enforced with:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">M-x untabify</code></li>
+  <li><code class="highlighter-rouge">M-x delete-trailing-whitespace</code></li>
+</ul>
+
+<h3 id="column-width">Column width</h3>
+
+<p>Every line should have a maximum of 79-80 characters. This isn’t just a Python
+best practice, it a best practice for any programming language.</p>
+
+<p>Here’s why:</p>
+
+<ul>
+  <li>It allows one to print the source code on paper.</li>
+  <li>It discourages over-indentation (three indentation levels should be plenty).</li>
+  <li>It discourages hard-coded paths.</li>
+  <li>It discourages object method spaghetti.</li>
+</ul>
+
+<p>Log messages provide a reasonable excemption to this rule.</p>
+
+<h3 id="naming-conventions">Naming conventions</h3>
+
+<p>Use snake_case for variables and functions. Use meaningful and descriptive
+names, especially for functions.</p>
+
+<p>Class names are capitalized.</p>
+
+<p>‘Private’ methods and variables should begin with an underscore.</p>
+
+<p><code class="highlighter-rouge">date_start</code> and <code class="highlighter-rouge">date__end</code> is preferrable to <code class="highlighter-rouge">start_date</code> and <code class="highlighter-rouge">end_date</code>.</p>
+
+<h3 id="main">Main</h3>
+
+<p>It is wise for scripts to have a single point of entry:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="o">...</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="io">I/O</h2>
+
+<h3 id="close">Close</h3>
+
+<p>Close all opened resources (files, unix sockets, database connections).</p>
+
+<p>The following is acceptable:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">file_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="c"># do stuff to file_handle</span>
+<span class="n">close</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>As is:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_handle</span><span class="p">:</span>
+    <span class="c"># do stuff with file handle</span>
+</code></pre></div></div>
+
+<h3 id="process-lines-one-by-one">Process lines one-by-one</h3>
+
+<p>It is often more memory efficient efficient to do this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">lines</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+    <span class="c"># process line</span>
+</code></pre></div></div>
+
+<p>as opposed to this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lines</span> <span class="o">=</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+    <span class="c"># process line</span>
+</code></pre></div></div>
+
+<h3 id="streams">Streams</h3>
+
+<p>IO operations should be isolated.
+Functions should read from and write to <em>streams</em> instead of <em>files</em>.</p>
+
+<p>Avoid this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="c"># read from file_path</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="c"># write to file_path</span>
+</code></pre></div></div>
+
+<p>Instead, do this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">process_file</span><span class="p">(</span><span class="n">text_stream</span><span class="p">):</span>
+    <span class="c"># process text_stream</span>
+
+<span class="k">def</span> <span class="nf">write_file</span><span class="p">()</span>
+    <span class="c"># generate text stream</span>
+    <span class="k">return</span>    
+
+<span class="n">file_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="n">read_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span>
+<span class="n">close</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>It is easier to unit test functions that reads from / writes to text streams.
+Try your best to seperate your program’s logic from IO operations.</p>
+
+    <script src="../static/katex.js"></script>
+    <script src="../static/jquery.js"></script>
+    <script src="../static/render_math.js"></script>
+    </body>
+</html>

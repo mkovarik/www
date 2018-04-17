@@ -1,0 +1,93 @@
+Integration
+===========
+
+
+
+
+2009-10-12
+----------
+
+### Administrata
+
+Calculators.
+: You are expected to supply your own. Graphing calculators are not permissible.
+  (Nor are any calculators capable of loading custom software)
+
+Bathroom Breaks.
+: Always permissible **except** for tests / quizzes. If there is a potential
+  medical issue, please seek disability accomodations.
+
+Disability Accomodations.
+: See syllabus. Not all disabilities can be accomodated for. I'll do my best.
+
+Attendance.
+: Attend every lecture. Tests will have a "make up" for no shows. Missing a test
+  and its make
+
+Important Dates
+: Some important dates include 
+
+  | Date       | Event                                     |
+  |------------+-------------------------------------------|
+  | 2017-09-12 | First Day of Class                        |
+  | 2017-10-18 | Midterm I                                 |
+  | 2017-11-14 | Last Day to Withdrawal (with a 'W' grade) |
+  | 2017-11-22 | Midterm II                                |
+  | 2017-12-04 | Midterm I Make Up                         |
+  | 2017-12-06 | Midterm II Make Up                        |
+  | 2017-12-14 | Final Exam                                |
+  | 2017-12-17 | Final Grades Released                     |
+
+
+### Lecture Notes
+
+Statistics.
+: The art of making sense of data. Two main disciplines include **descriptive
+  statistics** (summarizing and communicating data) and **inferential 
+  statistics** (drawing conclusions from data).
+
+Jobs.
+: Researchers. Analysts. Actuaries. 'Data Scientists'. High salaries. $$$.
+
+Software.
+: Spreadsheet applications (LO Calc, MS Excel, etc.). Programming languages
+  (R, Python). Visualization tools.
+
+Sumation Notation.
+: $$\Sigma$$ (greek: capital"sigma") is used to denote sums. Useful notation 
+  when sums have an unspecified number of terms.
+
+Sample / Data Set.
+: Basically some collection of data that we have access to.
+
+(Sample) Standard Deviation.
+: Measure of dispersion. Shares the same unit (if any) of the underlying sample.
+  Not robust. Denoted by $$\sigma$$ (lowercase "sigma"). Defined by
+
+  $$\sigma = \sqrt{\frac{1}{N-1} \sum (x-\bar{x})^2}.$$
+
+  The summation is over every value $$x$$ in the sample (mean = $$\bar x$$).
+  $$N$$ is the sample size.
+
+  **NOTE:** Some statisticians choose to use $$N$$ in the denominator instead of
+  $$N-1$$. Search 'bias-variance tradeoff' for the pros/cons.
+
+(Sample) Variance.
+: A measure of dispersion. The square of the sample variance. Measured in the
+  square of the unit (if any) of the underlying sample data. Denoted by
+  $$\sigma^2$$:
+
+  $$\sigma^2 = \frac{1}{N-1} \sum (x - \bar x)^2.$$
+
+### Code
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~python
+def dot(vec1, vec2):
+    total = 0
+    for comp1, comp2 in zip(vec1, vec2):
+        total += comp1 * comp2
+    return 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here, the vector `vec1` must contain numerical instances.
